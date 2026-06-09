@@ -197,7 +197,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.07);paddin
   .nav-links{display:none}
   .hamburger{display:flex}
 }
-
+ 
 @media(max-width:600px){
   .page-hdr{padding:90px 5% 25px!important}
 }
@@ -212,7 +212,7 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.07);paddin
   <ul class="nav-links">
     <li><a href="index.html">Home</a></li>
     <li><a href="services.html">Services</a></li>
-    <li><a href="about.html">About</a></li>
+    
     <li><a href="blog.html" class="active">Blog</a></li>
     <li><a href="contact.html">Contact</a></li>
     <li><a href="contact.html" class="nav-cta">Free Audit</a></li>
@@ -224,12 +224,12 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.07);paddin
 <div class="mobile-nav" id="mobileNav">
   <a href="index.html">Home</a>
   <a href="services.html">Services</a>
-  <a href="about.html">About</a>
+  
   <a href="blog.html">Blog</a>
   <a href="contact.html">Contact</a>
   <a href="contact.html" style="color:var(--teal);font-weight:600">Free Audit →</a>
 </div>
-
+ 
 <div class="page-hdr"><div class="page-hdr-inner">
   <div class="page-hdr-logo"><img src="marketowl-logo.jpg" alt="MarketOwl"/></div>
   <span class="sec-tag stg-light">The Owl's Nest</span>
@@ -244,6 +244,11 @@ footer{background:var(--dark);border-top:1px solid rgba(255,255,255,0.07);paddin
     <button class="filt-btn" onclick="filterPosts('strategy',this)">Strategy</button>
   </div>
   <div class="blog-grid" id="bGrid">
+    <a href="post7.html" class="blog-card" data-cat="amazon">
+      <div class="blog-img c1">📈</div>
+      <div class="bbar ba"></div>
+      <div class="bbody"><span class="btag bta">Amazon Ads</span><h3>What Your ACOS Is Actually Telling You</h3><p>Most brands misread this metric entirely. Here's what ACOS is really measuring — and how to bring it down.</p><span class="bread">Read More →</span></div>
+    </a>
     <a href="post1.html" class="blog-card" data-cat="amazon">
       <div class="blog-img c1">📊</div>
       <div class="bbar ba"></div>
@@ -286,7 +291,7 @@ function filterPosts(cat,btn){
   btn.classList.add('act');
 }
 </script>
-
+ 
 <footer>
   <div class="footer-inner">
     <a href="index.html" class="flogo">
@@ -296,49 +301,14 @@ function filterPosts(cat,btn){
     <ul class="flinks">
       <li><a href="index.html">Home</a></li>
       <li><a href="services.html">Services</a></li>
-      <li><a href="about.html">About</a></li>
+      
       <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <div class="fcopy">© 2026 MarketOwl. All rights reserved.</div>
   </div>
 </footer>
-<button class="chat-toggle" id="chatBtn" onclick="toggleChat()">
-  <svg class="icon-chat" viewBox="0 0 24 24"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-  <svg class="icon-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
-</button>
-<div class="chat-window" id="chatWindow">
-  <div class="chat-header">
-    <div class="chat-hdr-logo"><img src="marketowl-logo.jpg" alt="MarketOwl"/></div>
-    <div class="chat-hdr-info"><h4>MarketOwl AI</h4><p>Ask me anything</p></div>
-    <div class="chat-status-dot"></div>
-  </div>
-  <div class="chat-messages" id="chatMsgs">
-    <div class="msg msg-bot">Hi! I'm the MarketOwl assistant. Ask me anything about our services, pricing, or how we help brands grow on Amazon and Walmart.</div>
-  </div>
-  <div class="chat-suggestions" id="chatSugs">
-    <button class="sug" onclick="useSug(this)">How does pricing work?</button>
-    <button class="sug" onclick="useSug(this)">What results can I expect?</button>
-    <button class="sug" onclick="useSug(this)">Do you work with Walmart?</button>
-    <button class="sug" onclick="useSug(this)">How do I get started?</button>
-  </div>
-  <div class="chat-input-row">
-    <input class="chat-inp" id="chatInp" type="text" placeholder="Ask a question..." onkeydown="if(event.key==='Enter')sendChat()"/>
-    <button class="chat-send-btn" onclick="sendChat()">
-      <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-    </button>
-  </div>
-</div>
-<script>
-var chatOpen=false,chatHistory=[];
-function toggleChat(){chatOpen=!chatOpen;document.getElementById('chatWindow').classList.toggle('open',chatOpen);document.getElementById('chatBtn').classList.toggle('open',chatOpen);if(chatOpen)document.getElementById('chatInp').focus();}
-var BOT='You are the MarketOwl AI assistant. MarketOwl is an AI-powered Amazon and Walmart advertising agency. Pricing: flat monthly fee only, no contracts, no % of ad spend, no setup fees. Results: avg 71% ROAS improvement, 41% ACOS reduction, 32% waste cut. 500+ brands helped, $250M managed. Free audit available. Email: marketowlads@gmail.com. Be warm and concise. Keep responses 2-4 sentences. Encourage free audit.';
-async function callAI(msg){chatHistory.push({role:'user',content:msg});try{var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,system:BOT,messages:chatHistory})});var d=await r.json();var rep=d.content[0].text;chatHistory.push({role:'assistant',content:rep});return rep;}catch(e){return 'Having trouble connecting. Email us at marketowlads@gmail.com!';}}
-function addMsg(t,r){var e=document.createElement('div');e.className='msg msg-'+r;e.textContent=t;document.getElementById('chatMsgs').appendChild(e);document.getElementById('chatMsgs').scrollTop=99999;}
-function showTyping(){var e=document.createElement('div');e.className='typing';e.id='typ';e.innerHTML='<span></span><span></span><span></span>';document.getElementById('chatMsgs').appendChild(e);document.getElementById('chatMsgs').scrollTop=99999;}
-function hideTyping(){var t=document.getElementById('typ');if(t)t.remove();}
-async function sendChat(){var i=document.getElementById('chatInp');var t=i.value.trim();if(!t)return;i.value='';document.getElementById('chatSugs').style.display='none';addMsg(t,'user');showTyping();var r=await callAI(t);hideTyping();addMsg(r,'bot');}
-function useSug(b){document.getElementById('chatInp').value=b.textContent;sendChat();}
-</script>
+ 
+ 
 </body>
 </html>
